@@ -1,0 +1,7 @@
+---
+import ServicePageLayout from "../../../layouts/ServicePage.astro";
+import { getServiceForLocale } from "../../../data/services";
+
+const service = getServiceForLocale("creation-site-wordpress", "es");
+---
+<ServicePageLayout service={service} locale="es" />

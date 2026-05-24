@@ -1,0 +1,285 @@
+---
+import Base from "./Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import LeadForm from "../components/LeadForm.astro";
+import { t, localizedUrl, type Locale } from "../i18n/translations";
+import { SITE } from "../data/site";
+import type { ServicePage } from "../data/services";
+
+export interface Props {
+  service: ServicePage;
+  locale?: Locale;
+}
+const { service, locale = 'fr' } = Astro.props;
+const { title, headline, description, icon, heroImage, features, benefits, process, faq, pricing } = service;
+
+const useCaseIcons = ['🚀', '🏢', '🛒', '⚡'] as const;
+const useCaseKeys = ['startup', 'sme', 'ecom', 'large'] as const;
+---
+<Base title={title} description={description} path={`/${service.slug}/`} locale={locale}>
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-slate-950 text-white overflow-hidden min-h-[70vh] flex items-center">
+      <div class="absolute inset-0">
+        <img src={heroImage} alt="" class="w-full h-full object-cover opacity-30" loading="eager" />
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/50"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 relative w-full">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-8">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="text-4xl">{icon}</span>
+              <span class="chip chip-dark backdrop-blur-sm border-white/10">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
+                {t(locale, 'svc.service' as any)}
+              </span>
+            </div>
+            <h1 class="font-display text-4xl lg:text-6xl tracking-tight leading-[0.96] mb-5">
+              {headline}
+            </h1>
+            <p class="text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
+              {description}
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a href={localizedUrl(locale, '/contact/')} class="btn-coral text-base">
+                {t(locale, 'svc.cta.request_quote' as any)}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="#features" class="inline-flex items-center gap-2 text-white border border-white/30 hover:bg-white/10 backdrop-blur px-5 py-3 rounded-xl transition-colors text-sm">
+                {t(locale, 'svc.cta.discover' as any)}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section-pad bg-white">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <p class="chip mb-3">{t(locale, 'svc.features.label' as any)}</p>
+          <h2 class="font-display text-3xl lg:text-4xl text-slate-900 mb-3">{t(locale, 'svc.features.title' as any)}</h2>
+          <p class="text-slate-600">{t(locale, 'svc.features.subtitle' as any)}</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {features.map(f => (
+            <div class="card p-5 flex items-start gap-3 hover:border-brand-300 transition-colors">
+              <div class="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <p class="text-sm text-slate-700 leading-relaxed">{f}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Use cases -->
+    <section class="section-pad bg-slate-50">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <p class="chip mb-3">{t(locale, 'svc.use_cases.label' as any)}</p>
+          <h2 class="font-display text-3xl lg:text-4xl text-slate-900 mb-3">{t(locale, 'svc.use_cases.title' as any)}</h2>
+          <p class="text-slate-600">{t(locale, 'svc.use_cases.subtitle' as any)}</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-5">
+          {useCaseKeys.map((key, i) => (
+            <div class="card p-6">
+              <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center text-xl mb-4">{useCaseIcons[i]}</div>
+              <h3 class="font-semibold text-slate-900 mb-2">{t(locale, `svc.use_case.${key}.title` as any)}</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">{t(locale, `svc.use_case.${key}.desc` as any)}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section-pad bg-white">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-5">
+            <p class="chip mb-3">{t(locale, 'svc.benefits.label' as any)}</p>
+            <h2 class="font-display text-3xl lg:text-4xl text-slate-900 mb-6">{t(locale, 'svc.benefits.title' as any)}</h2>
+            <div class="space-y-4">
+              {benefits.map(b => (
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center shrink-0 text-xs font-bold">✓</div>
+                  <div>
+                    <h3 class="font-semibold text-slate-900 text-sm">{b.title}</h3>
+                    <p class="text-sm text-slate-500 mt-0.5">{b.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/20 ring-1 ring-slate-200">
+              <img src={heroImage} alt={title} class="w-full h-auto" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section-pad bg-slate-900 text-white relative overflow-hidden">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 50%, rgba(2,106,191,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(14,165,233,0.06) 0%, transparent 50%);"></div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 relative">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <p class="chip chip-dark mb-3">{t(locale, 'svc.process.label' as any)}</p>
+          <h2 class="font-display text-3xl lg:text-4xl mb-3">{t(locale, 'svc.process.title' as any)}</h2>
+          <p class="text-slate-400">{t(locale, 'svc.process.subtitle' as any)}</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {process.map((p, i) => (
+            <div class="relative">
+              {i < process.length - 1 && (
+                <div class="hidden lg:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-brand-600/50 to-transparent z-0"></div>
+              )}
+              <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 relative z-10 h-full">
+                <div class="inline-block font-display text-3xl text-brand-400 mb-3">{p.step}</div>
+                <h3 class="font-semibold text-white text-base mb-2">{p.title}</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section-pad bg-white">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <p class="chip mb-3">{t(locale, 'svc.pricing.label' as any)}</p>
+          <h2 class="font-display text-3xl lg:text-4xl text-slate-900 mb-3">{t(locale, 'svc.pricing.title' as any)}</h2>
+          <p class="text-slate-600">{t(locale, 'svc.pricing.subtitle' as any)}</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {pricing.map((plan, i) => (
+            <div class={`card p-6 ${i === 1 ? 'ring-2 ring-brand-400 relative' : ''}`}>
+              {i === 1 && <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">{t(locale, 'svc.pricing.popular' as any)}</div>}
+              <h3 class="font-semibold text-slate-900 text-lg">{plan.plan}</h3>
+              <p class="text-sm text-slate-500 mb-1">{plan.desc}</p>
+              <div class="font-display text-2xl text-brand-600 mb-4">{plan.price}</div>
+              <ul class="space-y-2.5 mb-6">
+                {plan.features.map(f => (
+                  <li class="flex items-start gap-2 text-sm text-slate-600">
+                    <svg class="w-4 h-4 text-brand-500 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href={localizedUrl(locale, '/contact/')} class={`block text-center text-sm font-semibold py-3 rounded-xl transition-colors ${i === 1 ? 'bg-brand-600 text-white hover:bg-brand-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}>
+                {t(locale, 'svc.pricing.choose' as any)}
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-pad bg-slate-50">
+      <div class="max-w-3xl mx-auto px-5 lg:px-8">
+        <div class="text-center mb-10">
+          <p class="chip mb-3">{t(locale, 'svc.faq.label' as any)}</p>
+          <h2 class="font-display text-3xl text-slate-900">{t(locale, 'svc.faq.title' as any)}</h2>
+          <p class="text-slate-600 mt-2">{t(locale, 'svc.faq.subtitle' as any)}</p>
+        </div>
+        <div class="space-y-3">
+          {faq.map(item => (
+            <details class="card overflow-hidden group">
+              <summary class="p-5 cursor-pointer list-none flex items-center justify-between text-sm font-semibold text-slate-900 hover:text-brand-600 transition-colors">
+                {item.q}
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </summary>
+              <div class="px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                {item.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-16 bg-gradient-to-br from-brand-700 via-brand-800 to-slate-900 text-white relative overflow-hidden">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.08) 0%, transparent 50%);"></div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 relative">
+        <div class="grid md:grid-cols-4 gap-6 text-center">
+          <div>
+            <div class="font-display text-5xl mb-2">120+</div>
+            <div class="text-sm text-brand-200 uppercase tracking-wider">{t(locale, 'svc.stats.projects' as any)}</div>
+          </div>
+          <div>
+            <div class="font-display text-5xl mb-2">15+</div>
+            <div class="text-sm text-brand-200 uppercase tracking-wider">{t(locale, 'svc.stats.years' as any)}</div>
+          </div>
+          <div>
+            <div class="font-display text-5xl mb-2">98%</div>
+            <div class="text-sm text-brand-200 uppercase tracking-wider">{t(locale, 'svc.stats.satisfaction' as any)}</div>
+          </div>
+          <div>
+            <div class="font-display text-5xl mb-2">24/7</div>
+            <div class="text-sm text-brand-200 uppercase tracking-wider">{t(locale, 'svc.stats.monitoring' as any)}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="section-pad bg-white">
+      <div class="max-w-4xl mx-auto px-5 lg:px-8 text-center">
+        <p class="chip mb-3">{t(locale, 'svc.testi.label' as any)}</p>
+        <h2 class="font-display text-3xl text-slate-900 mb-8">{t(locale, 'svc.testi.title' as any)}</h2>
+        <div class="card p-8 lg:p-10 text-left bg-gradient-to-br from-slate-50 to-white">
+          <div class="flex gap-1 text-amber-400 text-lg mb-4">★★★★★</div>
+          <blockquote class="font-display text-xl lg:text-2xl text-slate-800 leading-snug mb-6">
+            {t(locale, 'svc.testi.quote' as any)}
+          </blockquote>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold">DO</div>
+            <div>
+              <div class="font-semibold text-slate-900">Daniel Obadia</div>
+              <div class="text-sm text-slate-500">{locale === 'fr' ? 'Gérant — Obagem' : locale === 'en' ? 'Director — Obagem' : 'Director — Obagem'}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-pad bg-white">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-5">
+            <p class="chip mb-3">{t(locale, 'svc.cta.label' as any)}</p>
+            <h2 class="font-display text-3xl text-slate-900 mb-4">{t(locale, 'svc.cta.title' as any)}</h2>
+            <p class="text-slate-600 mb-6">{t(locale, 'svc.cta.subtitle' as any)}</p>
+            <div class="space-y-3">
+              <a href={`mailto:${SITE.email}`} class="flex items-center gap-3 text-slate-700 hover:text-brand-600 transition-colors text-sm">
+                <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+                {SITE.email}
+              </a>
+              <a href={SITE.phoneHref} class="flex items-center gap-3 text-slate-700 hover:text-brand-600 transition-colors text-sm">
+                <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                {SITE.phone}
+              </a>
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <LeadForm variant="full" title={`${t(locale, 'svc.cta.request_quote' as any)} - ${title}`} subtitle={t(locale, 'home.contact.form_subtitle' as any)} cta={t(locale, 'cta.send_request' as any)} />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

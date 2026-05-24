@@ -1,0 +1,109 @@
+---
+import { SITE } from "../data/site";
+import { STATS } from "../data/content";
+import LeadForm from "./LeadForm.astro";
+---
+<section class="relative overflow-hidden bg-hero-radial pt-12 lg:pt-20 pb-20">
+  <div class="absolute inset-0 bg-grid opacity-60 pointer-events-none"></div>
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-20 -left-32 w-[500px] h-[500px] rounded-full bg-brand-300/20 blur-[120px] animate-drift1"></div>
+    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-coral-400/10 blur-[100px] animate-drift2"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+      <!-- Left: copy -->
+      <div class="lg:col-span-7 pt-4">
+        <div class="flex items-center gap-3 mb-8 animate-fadeUp flex-wrap">
+          <span class="chip">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            Agence IA · Web · Maintenance · depuis 2010
+          </span>
+          <span class="chip chip-coral">
+            ⚡ +120 projets livrés
+          </span>
+        </div>
+
+        <h1 class="font-display text-[clamp(2.6rem,7vw,6rem)] leading-[0.96] tracking-tight animate-fadeUp" style="animation-delay:.1s">
+          L'IA et le web, <br/>
+          <span class="text-gradient-brand">au service de votre croissance.</span>
+        </h1>
+
+        <p class="mt-7 max-w-2xl text-xl text-slate-600 leading-relaxed animate-fadeUp" style="animation-delay:.25s">
+          Nous concevons des <strong class="text-slate-900">agents IA</strong>, des sites web haute performance et des e-commerces qui convertissent. <strong class="text-slate-900">15 ans d'expérience</strong>, des résultats mesurables, un accompagnement humain.
+        </p>
+
+        <!-- Inline CTAs + trust -->
+        <div class="mt-10 flex flex-wrap items-center gap-4 animate-fadeUp" style="animation-delay:.35s">
+          <a href="#lead-form" class="btn-coral text-base">
+            Démarrer mon projet
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="#services" class="btn-ghost text-base">Voir nos services</a>
+        </div>
+
+        <!-- Trust micro-row -->
+        <div class="mt-10 flex flex-wrap items-center gap-7 text-sm text-slate-600 animate-fadeUp" style="animation-delay:.45s">
+          <div class="flex items-center gap-2">
+            <div class="flex -space-x-2">
+              {[1,2,3,4].map((i) => (
+                <div class={`w-8 h-8 rounded-full ring-2 ring-white ${
+                  i===1 ? 'bg-brand-600' : i===2 ? 'bg-brand-700' : i===3 ? 'bg-coral-500' : 'bg-brand-500'
+                } flex items-center justify-center text-white text-xs font-bold`}>
+                  {['DO','OS','KB','+'][i-1]}
+                </div>
+              ))}
+            </div>
+            <span>120+ clients accompagnés</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="flex gap-0.5 text-amber-400">★★★★★</div>
+            <span class="font-semibold text-slate-900">5,0</span>
+            <span class="text-slate-500">(Google)</span>
+          </div>
+          <div class="hidden sm:flex items-center gap-2 text-slate-600">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            Disponibles cette semaine
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Lead capture form -->
+      <div id="lead-form" class="lg:col-span-5 animate-fadeUp" style="animation-delay:.4s">
+        <LeadForm
+          variant="hero"
+          source="hero"
+          subtitle="Décrivez-nous votre projet en 60 secondes. On vous rappelle avec un devis sous 24h."
+          cta="Obtenir mon devis"
+        />
+      </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-px bg-slate-200 rounded-2xl overflow-hidden ring-1 ring-slate-200">
+      {STATS.map((s) => (
+        <div class="bg-white p-7 lg:p-8">
+          <div class="font-display text-5xl lg:text-6xl text-brand-600">{s.value}</div>
+          <div class="mt-3 text-sm text-slate-600 font-medium">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Trust marquee -->
+<section class="border-y border-slate-200 bg-slate-50/60 py-7 overflow-hidden">
+  <div class="text-center mb-5">
+    <span class="font-mono text-[11px] uppercase tracking-[0.25em] text-slate-500">Ils nous font confiance</span>
+  </div>
+  <div class="flex items-center gap-14 animate-marquee whitespace-nowrap">
+    {Array.from({length: 2}).flatMap(() => [
+      "Obagem", "Franchises Point Soleil", "HTC Santé", "Diamantaires Paris", "TURF.fr",
+      "Beach Toy", "House of Palm", "Galerie ADAM", "Hercule Pro", "Villa Galilée",
+      "NOTO CBD", "Cabinet KOPP", "Winrider", "Sainte Union de Douai", "Le Coin Barber",
+    ]).map((s) => (
+      <span class="client-name">{s}</span>
+    ))}
+  </div>
+</section>

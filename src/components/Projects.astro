@@ -1,0 +1,65 @@
+---
+import { PROJECTS } from "../data/content";
+import LeadForm from "./LeadForm.astro";
+const aiProjects = PROJECTS.filter((p) => p.type === "ai");
+const webProjects = PROJECTS.filter((p) => p.type !== "ai");
+---
+<section id="travaux" class="section-pad relative bg-section-tint">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="mb-14 max-w-3xl">
+      <p class="chip mb-5">Travaux récents</p>
+      <h2 class="font-display text-5xl lg:text-6xl tracking-tight leading-[1.05] text-slate-900">
+        120+ projets.<br/>
+        <span class="italic text-brand-600">Une équipe française.</span>
+      </h2>
+      <p class="text-slate-600 text-lg mt-7 max-w-2xl">
+        De l'agent IA en production aux refontes WordPress complexes — un échantillon récent de notre travail.
+      </p>
+    </div>
+
+    <!-- AI section -->
+    <div class="mb-14">
+      <div class="flex items-baseline gap-4 mb-7">
+        <span class="font-mono text-xs text-brand-600 uppercase tracking-[0.25em] font-bold">▌ Projets IA</span>
+        <span class="text-slate-500 text-sm">— productions internes et clients</span>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        {aiProjects.map((p) => (
+          <article class="card p-7 group">
+            <div class="flex items-start justify-between mb-5">
+              <span class="chip !text-[10px]">IA · {p.year}</span>
+              <svg class="w-5 h-5 text-slate-300 group-hover:text-brand-600 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </div>
+            <h4 class="font-display text-2xl mb-2 text-slate-900">{p.name}</h4>
+            <p class="text-slate-500 text-sm">{p.sector}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- Web section -->
+    <div class="mb-14">
+      <div class="flex items-baseline gap-4 mb-7">
+        <span class="font-mono text-xs text-coral-600 uppercase tracking-[0.25em] font-bold">▌ Sites & e-commerce</span>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-slate-200 rounded-2xl overflow-hidden ring-1 ring-slate-200">
+        {webProjects.map((p) => (
+          <div class="bg-white p-5 hover:bg-brand-50/40 transition-colors">
+            <span class="font-mono text-[10px] text-slate-500 uppercase">{p.type} · {p.year ?? ""}</span>
+            <h5 class="text-slate-900 font-semibold mt-2 text-sm leading-tight">{p.name}</h5>
+            <p class="text-slate-500 text-xs mt-1.5">{p.sector}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Lead CTA -->
+    <LeadForm
+      variant="inline-cta"
+      source="after-portfolio"
+      title="Le prochain projet, c'est peut-être le vôtre"
+      subtitle="Quel que soit votre stade, on en discute sans engagement. Un appel de 30 minutes pour vous aider à voir clair."
+      cta="Discuter de mon projet"
+    />
+  </div>
+</section>

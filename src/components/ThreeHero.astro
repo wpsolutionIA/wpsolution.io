@@ -1,0 +1,261 @@
+---
+// Animated hero - pure CSS + inline WebGL (no external dependencies)
+// Reliable, works everywhere, no Astro bundling issues
+---
+<div class="three-hero-bg absolute inset-0 overflow-hidden">
+  <!-- Layer 1: animated gradient mesh -->
+  <div class="mesh-gradient"></div>
+
+  <!-- Layer 2: floating orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+  <div class="orb orb-5"></div>
+
+  <!-- Layer 3: animated grid lines -->
+  <div class="grid-lines"></div>
+
+  <!-- Layer 4: particles -->
+  <div class="particles" id="hero-particles"></div>
+
+  <!-- Layer 5: WebGL canvas (inline, no module) -->
+  <canvas id="hero-canvas" class="absolute inset-0 w-full h-full mix-blend-screen opacity-70"></canvas>
+</div>
+
+<style>
+  .three-hero-bg {
+    background: radial-gradient(ellipse at top, #0c1f3d 0%, #020617 70%);
+  }
+
+  .mesh-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(at 20% 30%, #026abf 0px, transparent 50%),
+      radial-gradient(at 80% 20%, #0ea5e9 0px, transparent 50%),
+      radial-gradient(at 50% 80%, #4d9bff 0px, transparent 50%),
+      radial-gradient(at 90% 70%, #f25c39 0px, transparent 40%);
+    filter: blur(80px) saturate(1.5);
+    opacity: 0.7;
+    animation: mesh-shift 15s ease-in-out infinite alternate;
+  }
+
+  @keyframes mesh-shift {
+    0%   { transform: scale(1) rotate(0deg); }
+    50%  { transform: scale(1.2) rotate(5deg); }
+    100% { transform: scale(1.1) rotate(-3deg); }
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    will-change: transform;
+  }
+  .orb-1 { width: 500px; height: 500px; background: #026abf; opacity: 0.45;
+    top: -150px; left: -100px; animation: orb-drift-1 22s ease-in-out infinite; }
+  .orb-2 { width: 400px; height: 400px; background: #0ea5e9; opacity: 0.4;
+    top: 20%; right: -100px; animation: orb-drift-2 28s ease-in-out infinite; }
+  .orb-3 { width: 600px; height: 600px; background: #4d9bff; opacity: 0.35;
+    bottom: -200px; left: 30%; animation: orb-drift-3 24s ease-in-out infinite; }
+  .orb-4 { width: 350px; height: 350px; background: #f25c39; opacity: 0.25;
+    top: 40%; left: 50%; animation: orb-drift-4 26s ease-in-out infinite; }
+  .orb-5 { width: 450px; height: 450px; background: #06b6d4; opacity: 0.3;
+    bottom: 10%; right: 20%; animation: orb-drift-5 30s ease-in-out infinite; }
+
+  @keyframes orb-drift-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(200px, 150px) scale(1.2); }
+    66%      { transform: translate(-100px, 250px) scale(0.9); }
+  }
+  @keyframes orb-drift-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-200px, 150px) scale(1.3); }
+  }
+  @keyframes orb-drift-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(-150px, -200px) scale(1.15); }
+    66%      { transform: translate(200px, 100px) scale(0.85); }
+  }
+  @keyframes orb-drift-4 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(100px, -150px) scale(1.25); }
+  }
+  @keyframes orb-drift-5 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-200px, 100px) scale(1.15); }
+  }
+
+  .grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(96, 165, 250, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(96, 165, 250, 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    animation: grid-move 20s linear infinite;
+  }
+
+  @keyframes grid-move {
+    0%   { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+  }
+
+  .particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #60a5fa;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa;
+    animation: particle-float linear infinite;
+  }
+
+  @keyframes particle-float {
+    0%   { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
+  }
+</style>
+
+<!-- Inline script, NOT type=module, so Astro doesn't touch it -->
+<script is:inline>
+  (function() {
+    // Generate particles
+    const container = document.getElementById('hero-particles');
+    if (container) {
+      const count = 40;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = (Math.random() * 100) + '%';
+        p.style.animationDuration = (8 + Math.random() * 12) + 's';
+        p.style.animationDelay = (Math.random() * 10) + 's';
+        p.style.opacity = (0.3 + Math.random() * 0.7);
+        container.appendChild(p);
+      }
+    }
+
+    // WebGL canvas — pure WebGL animated mesh
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const gl = canvas.getContext('webgl', { antialias: true, alpha: true });
+    if (!gl) return;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.clientWidth * dpr;
+      canvas.height = canvas.clientHeight * dpr;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const vs = `
+      attribute vec2 a_position;
+      varying vec2 v_uv;
+      void main() {
+        v_uv = a_position * 0.5 + 0.5;
+        gl_Position = vec4(a_position, 0.0, 1.0);
+      }
+    `;
+    const fs = `
+      precision highp float;
+      varying vec2 v_uv;
+      uniform float u_time;
+      uniform vec2 u_resolution;
+
+      float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+
+      float noise(vec2 p) {
+        vec2 i = floor(p);
+        vec2 f = fract(p);
+        float a = hash(i);
+        float b = hash(i + vec2(1.0, 0.0));
+        float c = hash(i + vec2(0.0, 1.0));
+        float d = hash(i + vec2(1.0, 1.0));
+        vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+      }
+
+      void main() {
+        float aspect = u_resolution.x / u_resolution.y;
+        vec2 p = (v_uv - 0.5) * vec2(aspect, 1.0);
+        float t = u_time * 0.3;
+
+        // Multiple noise layers
+        float n1 = noise(p * 3.0 + t * 0.5);
+        float n2 = noise(p * 6.0 - t * 0.3);
+        float n3 = noise(p * 12.0 + t * 0.8);
+
+        float combined = n1 * 0.5 + n2 * 0.3 + n3 * 0.2;
+
+        // Brand colors
+        vec3 dark = vec3(0.027, 0.039, 0.078);
+        vec3 blue = vec3(0.008, 0.416, 0.749);
+        vec3 cyan = vec3(0.024, 0.714, 0.831);
+        vec3 lightBlue = vec3(0.376, 0.647, 0.980);
+
+        vec3 col = mix(dark, blue, combined);
+        col = mix(col, cyan, n2 * 0.3);
+        col = mix(col, lightBlue, n3 * 0.2);
+
+        // Vignette
+        float vig = smoothstep(1.5, 0.4, length(p));
+        col *= mix(0.3, 1.0, vig);
+
+        gl_FragColor = vec4(col, 0.8);
+      }
+    `;
+
+    function compile(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        console.error('Shader error:', gl.getShaderInfoLog(s));
+        return null;
+      }
+      return s;
+    }
+    const vsh = compile(gl.VERTEX_SHADER, vs);
+    const fsh = compile(gl.FRAGMENT_SHADER, fs);
+    if (!vsh || !fsh) return;
+
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vsh);
+    gl.attachShader(prog, fsh);
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+    const aPos = gl.getAttribLocation(prog, 'a_position');
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+    const uTime = gl.getUniformLocation(prog, 'u_time');
+    const uRes = gl.getUniformLocation(prog, 'u_resolution');
+
+    const start = performance.now();
+    function render() {
+      const t = (performance.now() - start) / 1000;
+      gl.uniform1f(uTime, t);
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      requestAnimationFrame(render);
+    }
+    render();
+  })();
+</script>

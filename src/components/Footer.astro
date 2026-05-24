@@ -1,0 +1,102 @@
+---
+import { SITE } from "../data/site";
+import { getLocaleFromPath, localizedUrl, t, type Locale } from "../i18n/translations";
+
+const locale: Locale = getLocaleFromPath(Astro.url.pathname);
+const year = new Date().getFullYear();
+
+const services = [
+  { key: 'nav.solutions_ia', path: "/solutions-ia/" },
+  { key: 'nav.creation_site', path: "/creation-site-wordpress/" },
+  { key: 'nav.security', path: "/securite-wordpress/" },
+  { key: 'nav.maintenance', path: "/maintenance-wordpress/" },
+  { key: 'nav.seo', path: "/referencer-site/" },
+  { key: 'nav.ecommerce', path: "/agence-woocommerce/" },
+];
+
+const waSvg = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
+---
+<!-- CTA banner before footer -->
+<section class="bg-gradient-to-br from-brand-700 via-brand-800 to-slate-900 text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(242,92,57,0.2) 0%, transparent 50%);"></div>
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 relative">
+    <div class="grid lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7">
+        <h2 class="font-display text-3xl lg:text-5xl tracking-tight leading-tight mb-3">{t(locale, 'footer.cta.title' as any)}</h2>
+        <p class="text-lg text-brand-100 max-w-xl">{t(locale, 'footer.cta.subtitle' as any)}</p>
+      </div>
+      <div class="lg:col-span-5 flex flex-col sm:flex-row gap-3 lg:justify-end">
+        <a href={SITE.whatsappUrl} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white font-semibold px-6 py-4 rounded-xl transition-colors text-base">
+          <Fragment set:html={waSvg} />
+          WhatsApp
+        </a>
+        <a href={localizedUrl(locale, '/contact/')} class="inline-flex items-center justify-center gap-2 bg-coral-500 hover:bg-coral-600 text-white font-semibold px-6 py-4 rounded-xl transition-colors text-base">
+          {t(locale, 'cta.free_quote' as any)}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-slate-900 text-white">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12">
+    <div class="grid lg:grid-cols-12 gap-8 mb-10">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="/images/logo-recraft-v2.webp" alt="WP Solution" width="56" height="56" class="h-14 w-14 rounded-2xl object-cover" />
+          <div class="leading-tight">
+            <div class="font-bold text-xl tracking-tight text-white">WP<span class="font-light">Solution</span></div>
+            <div class="text-[10px] font-mono uppercase tracking-widest text-brand-300 -mt-0.5">Agence IA · Web</div>
+          </div>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-5">
+          Agence française spécialisée en intelligence artificielle, développement web WordPress, e-commerce et référencement. 15 ans d'expertise, +120 projets livrés.
+        </p>
+        <div class="flex gap-2 flex-wrap">
+          <a href={SITE.whatsappUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1da851] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">
+            <Fragment set:html={waSvg.replace('width="22" height="22"', 'width="16" height="16"')} />
+            WhatsApp
+          </a>
+          <a href={`mailto:${SITE.email}`} class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Email
+          </a>
+        </div>
+      </div>
+      <div class="lg:col-span-3">
+        <h4 class="font-semibold text-sm mb-3 text-brand-300">Services</h4>
+        <ul class="space-y-2 text-sm text-slate-400">
+          {services.map(s => <li><a href={localizedUrl(locale, s.path)} class="hover:text-white transition-colors">{t(locale, s.key as any)}</a></li>)}
+        </ul>
+      </div>
+      <div class="lg:col-span-3">
+        <h4 class="font-semibold text-sm mb-3 text-brand-300">L'entreprise</h4>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li><a href={localizedUrl(locale, "/portfolio/")} class="hover:text-white transition-colors">{t(locale, 'nav.portfolio' as any)}</a></li>
+          <li><a href={localizedUrl(locale, "/contact/")} class="hover:text-white transition-colors">{t(locale, 'nav.contact' as any)}</a></li>
+          <li><a href={localizedUrl(locale, "/mentions-legales/")} class="hover:text-white transition-colors">{locale === 'fr' ? 'Mentions légales' : locale === 'en' ? 'Legal notice' : 'Aviso legal'}</a></li>
+          <li><a href={localizedUrl(locale, "/politique-confidentialite/")} class="hover:text-white transition-colors">{locale === 'fr' ? 'Confidentialité' : locale === 'en' ? 'Privacy' : 'Privacidad'}</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <h4 class="font-semibold text-sm mb-3 text-brand-300">Contact</h4>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li><a href={`mailto:${SITE.email}`} class="hover:text-white transition-colors break-all">{SITE.email}</a></li>
+          <li><a href={SITE.phoneHref} class="hover:text-white transition-colors">{SITE.phone}</a></li>
+          <li><a href={SITE.whatsappUrl} target="_blank" rel="noopener" class="hover:text-white transition-colors inline-flex items-center gap-1"><span class="text-[#25D366]">●</span> WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© {year} WP Solution · All rights reserved</p>
+      <p>Agence IA & Web · France</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp button -->
+<a href={SITE.whatsappUrl} target="_blank" rel="noopener" aria-label="Contactez-nous sur WhatsApp" class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] hover:bg-[#1da851] text-white rounded-full shadow-2xl shadow-emerald-500/40 flex items-center justify-center hover:scale-110 transition-transform group">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="absolute right-full mr-3 px-3 py-1.5 bg-slate-900 text-white text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Discutons sur WhatsApp</span>
+</a>

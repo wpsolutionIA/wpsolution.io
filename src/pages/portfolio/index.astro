@@ -1,0 +1,58 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LeadForm from "../../components/LeadForm.astro";
+---
+<Base title="Portfolio — Réalisations WordPress, E-commerce & IA | WP Solution" description="Découvrez nos réalisations : sites WordPress, e-commerce WooCommerce, solutions IA, référencement SEO. Plus de 120 projets livrés par WP Solution." path="/portfolio/" locale="fr">
+  <Header />
+  <main>
+    <section class="relative bg-slate-900 text-white py-20 lg:py-24">
+      <div class="absolute inset-0 bg-grid opacity-30 pointer-events-none"></div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 relative">
+        <span class="chip chip-dark mb-4">Portfolio</span>
+        <h1 class="font-display text-5xl lg:text-6xl tracking-tight mb-4">Nos réalisations</h1>
+        <p class="text-xl text-slate-300 max-w-2xl">Un aperçu de nos projets récents en création de sites, e-commerce, solutions IA et référencement.</p>
+      </div>
+    </section>
+
+    <section class="section-pad bg-white">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            { name: "Winrider", type: "E-commerce vélo · UAE", tags: ["E-commerce", "WooCommerce", "SEO"] },
+            { name: "HTC Santé", type: "Réseau santé · Refonte", tags: ["WordPress", "Refonte", "SEO"] },
+            { name: "Installation OpenClaw", type: "SaaS · Laravel + Stripe", tags: ["Laravel", "SaaS", "Stripe"] },
+            { name: "Diététicienne Vannes", type: "Santé · Refonte", tags: ["WordPress", "SEO local"] },
+            { name: "Obagem", type: "Industrie", tags: ["WordPress", "Elementor"] },
+            { name: "Beach Toy", type: "Lifestyle · E-commerce", tags: ["WooCommerce", "Design"] },
+            { name: "NOTO CBD", type: "E-commerce", tags: ["WooCommerce", "SEO"] },
+            { name: "TURF.FR", type: "Média · Refonte", tags: ["Refonte", "Performance"] },
+            { name: "Galerie ADAM", type: "Art & Culture", tags: ["WordPress", "Design"] },
+            { name: "Diamantaires Paris", type: "Luxe · E-commerce", tags: ["E-commerce", "Luxe"] },
+            { name: "House of Palm", type: "Décoration", tags: ["WordPress", "Design"] },
+            { name: "Villa Galilée", type: "Hôtellerie", tags: ["WordPress", "Réservation"] },
+            { name: "Hercule Pro", type: "B2B · Refonte", tags: ["Refonte", "B2B"] },
+            { name: "Le Coin Barber", type: "Local · Commerce", tags: ["WordPress", "Local"] },
+            { name: "Cabinet KOPP", type: "Avocat · Profession libérale", tags: ["WordPress", "Professionnel"] },
+          ].map(p => (
+            <div class="card p-6 group hover:border-brand-400">
+              <div class="flex flex-wrap gap-2 mb-4">
+                {p.tags.map(t => <span class="text-[10px] font-mono uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-1 rounded">{t}</span>)}
+              </div>
+              <h3 class="font-display text-2xl text-slate-900 mb-1">{p.name}</h3>
+              <p class="text-sm text-slate-500">{p.type}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-slate-50">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <LeadForm variant="inline" title="Votre projet pourrait figurer ici" subtitle="Discutons de votre projet. Premier devis gratuit, sans engagement." cta="Demander un devis" />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

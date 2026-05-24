@@ -1,0 +1,128 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Contact from "../../components/Contact.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import StickyLeadBar from "../../components/StickyLeadBar.astro";
+---
+<Base title="Expertise IA" path="/expertise/ia" description="Notre stack IA : agents, RAG, automatisations, observabilité, multi-modèles. Comment nous concevons l'IA en production pour des résultats mesurables.">
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="relative bg-hero-radial section-pad pt-24 overflow-hidden">
+      <div class="absolute inset-0 bg-grid opacity-50 pointer-events-none"></div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-10 relative grid lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7 lg:pt-6">
+          <p class="chip mb-5">Expertise IA</p>
+          <h1 class="font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[0.95] tracking-tight text-slate-900">
+            L'IA en production. <br/>
+            <span class="text-gradient-brand">Pas en démo.</span>
+          </h1>
+          <p class="mt-7 text-xl text-slate-600 max-w-2xl leading-relaxed">
+            Nous concevons des systèmes IA qui passent l'épreuve du quotidien : agents qui appellent vos APIs, RAG sur vos documents internes, observabilité fine, coûts maîtrisés, garde-fous adaptés à votre secteur.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a href="#contact-form-ia" class="btn-coral">
+              Demander un audit IA gratuit
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="/#services" class="btn-ghost">Voir tous les services</a>
+          </div>
+        </div>
+
+        <!-- Sidebar form -->
+        <div id="contact-form-ia" class="lg:col-span-5">
+          <LeadForm
+            variant="hero"
+            source="expertise-ia-hero"
+            subtitle="Audit IA offert : on regarde votre activité et on identifie 3 quick-wins concrets."
+            cta="Réserver mon audit IA"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack -->
+    <section class="section-pad relative">
+      <div class="max-w-7xl mx-auto px-5 lg:px-10">
+        <div class="mb-14">
+          <span class="font-mono text-xs text-brand-600 uppercase tracking-[0.3em] font-bold">▌ Notre stack</span>
+          <h2 class="font-display text-5xl lg:text-6xl mt-5 leading-tight text-slate-900">Multi-modèles. Maîtrisé.</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card p-8 lg:p-10">
+            <span class="font-mono text-xs text-brand-600 uppercase tracking-widest mb-5 block font-bold">Modèles</span>
+            <h3 class="font-display text-2xl mb-4 text-slate-900">Le bon modèle au bon usage</h3>
+            <p class="text-slate-600 leading-relaxed mb-4 text-sm">Claude 4, GPT-4o/5, Gemini 2.5, Llama, Mistral, Qwen — on choisit selon la tâche. Routing intelligent pour optimiser coût + qualité.</p>
+            <ul class="space-y-2 text-sm text-slate-700">
+              <li class="flex gap-2"><span class="text-brand-600">▸</span> Anthropic Claude</li>
+              <li class="flex gap-2"><span class="text-brand-600">▸</span> OpenAI GPT-4o / o-series</li>
+              <li class="flex gap-2"><span class="text-brand-600">▸</span> Google Gemini</li>
+              <li class="flex gap-2"><span class="text-brand-600">▸</span> Open-source self-hosted</li>
+            </ul>
+          </div>
+
+          <div class="card p-8 lg:p-10">
+            <span class="font-mono text-xs text-coral-600 uppercase tracking-widest mb-5 block font-bold">Frameworks</span>
+            <h3 class="font-display text-2xl mb-4 text-slate-900">Outils éprouvés en prod</h3>
+            <p class="text-slate-600 leading-relaxed mb-4 text-sm">Pas de framework du mois dernier. On utilise ce qui tient en production.</p>
+            <ul class="space-y-2 text-sm text-slate-700">
+              <li class="flex gap-2"><span class="text-coral-600">▸</span> LangChain / LangGraph</li>
+              <li class="flex gap-2"><span class="text-coral-600">▸</span> DSPy pour l'optimisation</li>
+              <li class="flex gap-2"><span class="text-coral-600">▸</span> Vector DB (Pinecone, pgvector, Qdrant)</li>
+              <li class="flex gap-2"><span class="text-coral-600">▸</span> n8n / Make pour les workflows</li>
+            </ul>
+          </div>
+
+          <div class="card p-8 lg:p-10">
+            <span class="font-mono text-xs text-emerald-600 uppercase tracking-widest mb-5 block font-bold">Observabilité</span>
+            <h3 class="font-display text-2xl mb-4 text-slate-900">Tout est mesuré</h3>
+            <p class="text-slate-600 leading-relaxed mb-4 text-sm">Coût par appel, latence, qualité, escalade. Vous avez un dashboard, pas une boîte noire.</p>
+            <ul class="space-y-2 text-sm text-slate-700">
+              <li class="flex gap-2"><span class="text-emerald-600">▸</span> LangSmith / Helicone</li>
+              <li class="flex gap-2"><span class="text-emerald-600">▸</span> Évaluations continues</li>
+              <li class="flex gap-2"><span class="text-emerald-600">▸</span> Alerting sur dérive</li>
+              <li class="flex gap-2"><span class="text-emerald-600">▸</span> Coût per-feature</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cases -->
+    <section class="section-pad bg-section-tint">
+      <div class="max-w-7xl mx-auto px-5 lg:px-10">
+        <div class="mb-14">
+          <span class="font-mono text-xs text-brand-600 uppercase tracking-[0.3em] font-bold">▌ Cas d'usage</span>
+          <h2 class="font-display text-5xl lg:text-6xl mt-5 leading-tight text-slate-900">3 usages, 3 ROI mesurés.</h2>
+        </div>
+
+        <div class="space-y-5">
+          {[
+            { num: "01", title: "Agent de qualification de leads", desc: "Capture des prospects 24/7 via chat, qualifie selon vos critères (budget, urgence, secteur), envoie le compte-rendu dans votre CRM, propose un RDV.", kpi: "+28%", kpiLabel: "leads qualifiés / mois" },
+            { num: "02", title: "Support client + base de connaissance", desc: "RAG sur vos docs internes / votre catalogue. Réponses sourcées (citations), escalade humaine quand l'agent n'est pas sûr, apprentissage continu.", kpi: "62%", kpiLabel: "tickets résolus en 1er niveau" },
+            { num: "03", title: "Génération de contenu opérationnel", desc: "Descriptions produits, articles blog SEO, fiches métier, traductions. Relecture humaine intégrée, ton de marque appris depuis vos contenus existants.", kpi: "× 8", kpiLabel: "vitesse de production" },
+          ].map((c) => (
+            <article class="card p-8 lg:p-10 grid lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-1 font-display text-6xl text-brand-200">{c.num}</div>
+              <div class="lg:col-span-7">
+                <h3 class="font-display text-2xl mb-3 text-slate-900">{c.title}</h3>
+                <p class="text-slate-600 leading-relaxed">{c.desc}</p>
+              </div>
+              <div class="lg:col-span-4 lg:text-right">
+                <div class="font-display text-6xl text-brand-600">{c.kpi}</div>
+                <div class="text-xs font-mono text-slate-500 uppercase tracking-wider mt-2">{c.kpiLabel}</div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Contact />
+  </main>
+  <Footer />
+  <StickyLeadBar />
+</Base>

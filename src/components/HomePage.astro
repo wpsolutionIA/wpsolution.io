@@ -1,0 +1,304 @@
+---
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import LeadForm from "./LeadForm.astro";
+import AiShowcase from "./AiShowcase.astro";
+import ThreeHero from "./ThreeHero.astro";
+import { SERVICE_PAGES } from "../data/services";
+import { SITE } from "../data/site";
+import { t, localizedUrl, type Locale } from "../i18n/translations";
+
+export interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+
+const clientLogos = [
+  { name: "Obagem", logo: "/images/clients/obagem.png", domain: "obagem.fr" },
+  { name: "HTC Santé", logo: "/images/clients/htc.png", domain: "htc-sante.com" },
+  { name: "Forum des Compétences", logo: "/images/clients/forum.png", domain: "forum-des-competences.org" },
+  { name: "Vegeplast", logo: "/images/clients/vegeplast.png", domain: "vegeplast.com" },
+  { name: "Bien Dans Ma Peau", logo: "/images/clients/bien-dans-ma-peau.png", domain: "bien-dans-ma-peau.fr" },
+];
+
+const testimonials = {
+  fr: [
+    { name: "Daniel Obadia", role: "Gérant — Obagem", text: "Nous avons confié la création de notre site à WP Solution et sommes ravis du résultat. Design sur mesure, épuré et performant." },
+    { name: "Olivier Soussan", role: "Gérant — Point Soleil", text: "Leur approche centrée sur la performance et le SEO nous a permis d'obtenir un site rapide, fluide et parfaitement adapté." },
+    { name: "Karim B.", role: "Fondateur — Healthtech", text: "Ils ont compris ce qu'on voulait faire en IA avant nous. Agent opérationnel en 3 semaines, +28% de leads qualifiés." },
+  ],
+  en: [
+    { name: "Daniel Obadia", role: "Director — Obagem", text: "We trusted WP Solution to build our website and we're delighted. Custom design, clean and high-performance." },
+    { name: "Olivier Soussan", role: "Director — Point Soleil", text: "Their performance and SEO-focused approach delivered a fast, smooth, perfectly tailored website." },
+    { name: "Karim B.", role: "Founder — Healthtech", text: "They understood our AI vision before we did. Operational agent in 3 weeks, +28% qualified leads." },
+  ],
+  es: [
+    { name: "Daniel Obadia", role: "Director — Obagem", text: "Confiamos en WP Solution para crear nuestra web y estamos encantados. Diseño a medida, limpio y de alto rendimiento." },
+    { name: "Olivier Soussan", role: "Director — Point Soleil", text: "Su enfoque en rendimiento y SEO nos dio un sitio rápido, fluido y perfectamente adaptado." },
+    { name: "Karim B.", role: "Fundador — Healthtech", text: "Entendieron nuestra visión IA antes que nosotros. Agente operativo en 3 semanas, +28% leads cualificados." },
+  ],
+}[locale];
+
+const philos = {
+  fr: [
+    { num: '01', title: t(locale, 'home.philo.pillar1.title' as any), desc: t(locale, 'home.philo.pillar1.desc' as any), color: "from-brand-500 to-brand-700" },
+    { num: '02', title: t(locale, 'home.philo.pillar2.title' as any), desc: t(locale, 'home.philo.pillar2.desc' as any), color: "from-cyan-500 to-brand-600" },
+    { num: '03', title: t(locale, 'home.philo.pillar3.title' as any), desc: t(locale, 'home.philo.pillar3.desc' as any), color: "from-coral-500 to-brand-700" },
+  ],
+}.fr;
+
+const pillars = [
+  { svc: SERVICE_PAGES[0], img: "/images/service-ia.png", accent: "from-brand-500/80 to-brand-700/80", title: t(locale, 'home.pillar.ia.title' as any), subtitle: t(locale, 'home.pillar.ia.subtitle' as any), href: localizedUrl(locale, "/solutions-ia/") },
+  { svc: SERVICE_PAGES[1], img: "/images/service-web.png", accent: "from-cyan-500/80 to-brand-600/80", title: t(locale, 'home.pillar.wp.title' as any), subtitle: t(locale, 'home.pillar.wp.subtitle' as any), href: localizedUrl(locale, "/creation-site-wordpress/") },
+  { svc: SERVICE_PAGES[4], img: "/images/service-seo.png", accent: "from-amber-500/70 to-brand-700/80", title: t(locale, 'home.pillar.seo.title' as any), subtitle: t(locale, 'home.pillar.seo.subtitle' as any), href: localizedUrl(locale, "/referencer-site/") },
+];
+---
+<Header />
+<main>
+  <!-- Hero -->
+  <section class="relative bg-slate-950 text-white overflow-hidden min-h-[90vh] flex items-center">
+    <ThreeHero />
+    <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 80px 80px;"></div>
+    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 relative w-full">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7">
+          <div class="flex items-center gap-3 mb-5 flex-wrap">
+            <span class="chip chip-dark backdrop-blur-sm border-white/10">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              {t(locale, 'home.hero.badge' as any)}
+            </span>
+            <span class="chip bg-coral-500/20 border-coral-400/30 text-coral-300">{t(locale, 'home.hero.projects' as any)}</span>
+          </div>
+          <h1 class="font-display text-5xl lg:text-7xl tracking-tight leading-[0.96] mb-6">
+            {t(locale, 'home.hero.title_1' as any)}<br/>
+            <span class="bg-gradient-to-r from-brand-300 via-brand-400 to-cyan-300 bg-clip-text text-transparent">{t(locale, 'home.hero.title_2' as any)}</span>
+          </h1>
+          <p class="text-lg lg:text-xl text-slate-200 leading-relaxed mb-7 max-w-xl" set:html={t(locale, 'home.hero.subtitle' as any)}></p>
+          <div class="flex flex-wrap gap-3 mb-8">
+            <a href={localizedUrl(locale, '/contact/')} class="btn-coral text-base">
+              {t(locale, 'cta.start_project' as any)}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#services" class="inline-flex items-center gap-2 text-white border border-white/30 hover:bg-white/10 backdrop-blur px-5 py-3 rounded-xl transition-colors text-sm">
+              {t(locale, 'cta.see_services' as any)}
+            </a>
+          </div>
+          <div class="flex items-center gap-6 text-sm text-slate-300">
+            <span class="flex items-center gap-2">
+              <div class="flex -space-x-2">
+                {['DO','OS','KB','+'].map((c,i) => (
+                  <div class={`w-8 h-8 rounded-full ring-2 ring-slate-950 flex items-center justify-center text-white text-[10px] font-bold ${['bg-brand-600','bg-brand-700','bg-coral-500','bg-brand-500'][i]}`}>{c}</div>
+                ))}
+              </div>
+              {t(locale, 'home.hero.clients_count' as any)}
+            </span>
+            <span class="flex items-center gap-1.5">
+              <span class="text-amber-400">★★★★★</span>
+              <span class="font-semibold text-white">5,0</span> {t(locale, 'home.hero.rating' as any)}
+            </span>
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <LeadForm variant="compact" title={t(locale, 'cta.quote_24h' as any)} subtitle={t(locale, 'home.hero.form_subtitle' as any)} cta={t(locale, 'cta.get_quote' as any)} />
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-12 left-12 hidden xl:flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-3">
+      <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+      </div>
+      <div>
+        <div class="font-mono text-[10px] text-slate-400">{t(locale, 'home.hero.uptime' as any)}</div>
+        <div class="text-sm font-semibold text-white">{t(locale, 'home.hero.monitoring' as any)}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client logos -->
+  <section class="py-16 bg-white border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="flex items-center justify-center gap-3 mb-10">
+        <div class="h-px w-12 bg-slate-300"></div>
+        <p class="text-xs text-slate-500 uppercase tracking-widest font-semibold">{t(locale, 'home.clients.label' as any)}</p>
+        <div class="h-px w-12 bg-slate-300"></div>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 items-center">
+        {clientLogos.map(c => (
+          <a href={`https://${c.domain}`} target="_blank" rel="noopener" class="group flex items-center justify-center h-24 px-4 transition-all hover:scale-105">
+            <img src={c.logo} alt={c.name} class="max-h-14 max-w-full w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all" loading="lazy" />
+          </a>
+        ))}
+      </div>
+      <p class="text-center text-xs text-slate-400 mt-8">{t(locale, 'home.clients.footer' as any)}</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section-pad bg-white">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="chip mb-3">{t(locale, 'home.services.label' as any)}</p>
+        <h2 class="font-display text-4xl lg:text-5xl text-slate-900 mb-3">{t(locale, 'home.services.title' as any)}</h2>
+        <p class="text-slate-600" set:html={t(locale, 'home.services.subtitle' as any)}></p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 mb-5">
+        {pillars.map(item => (
+          <a href={item.href} class="group card overflow-hidden hover:border-brand-400 transition-all hover:shadow-xl hover:shadow-brand-500/10">
+            <div class="relative h-44 overflow-hidden">
+              <img src={item.img} alt="" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div class={`absolute inset-0 bg-gradient-to-br ${item.accent} mix-blend-multiply`}></div>
+              <div class="absolute bottom-4 left-4 text-3xl drop-shadow-lg">{item.svc.icon}</div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-semibold text-slate-900 mb-1 group-hover:text-brand-600 transition-colors">{item.title}</h3>
+              <p class="text-xs text-slate-500 mb-3">{item.subtitle}</p>
+              <span class="text-sm font-semibold text-brand-600 inline-flex items-center gap-1">
+                {t(locale, 'cta.read_more' as any)}
+                <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+        {SERVICE_PAGES.slice(3).map((svc, i) => {
+          const imgs = ["/images/service-maintenance.png", "/images/service-seo.png", "/images/service-ecommerce.png", "/images/service-dev.png", "/images/service-ai-site.png"];
+          const accents = ["from-emerald-500/80 to-brand-700/80", "from-amber-500/70 to-brand-700/80", "from-pink-500/70 to-brand-700/80", "from-indigo-500/70 to-brand-700/80", "from-violet-500/70 to-brand-700/80"];
+          return (
+            <a href={localizedUrl(locale, `/${svc.slug}/`)} class="card overflow-hidden group hover:border-brand-400 transition-all hover:shadow-xl hover:shadow-brand-500/10">
+              <div class="relative h-28 overflow-hidden">
+                <img src={imgs[i]} alt="" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                <div class={`absolute inset-0 bg-gradient-to-br ${accents[i]} mix-blend-multiply`}></div>
+                <div class="absolute bottom-2 left-3 text-2xl drop-shadow-lg">{svc.icon}</div>
+              </div>
+              <div class="p-4">
+                <h3 class="font-semibold text-slate-900 mb-1.5 text-sm group-hover:text-brand-600 transition-colors">{svc.title}</h3>
+                <p class="text-xs text-slate-500 mb-3 line-clamp-2 leading-relaxed">{svc.description}</p>
+                <span class="text-xs font-semibold text-brand-600 inline-flex items-center gap-1">{t(locale, 'cta.read_more' as any)} →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <AiShowcase />
+
+  <!-- Why us -->
+  <section class="section-pad bg-slate-50 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 relative">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-5">
+          <p class="chip mb-3">{t(locale, 'home.why.label' as any)}</p>
+          <h2 class="font-display text-3xl lg:text-4xl text-slate-900 mb-4 leading-tight">{t(locale, 'home.why.title_1' as any)}<br/><span class="text-brand-600">{t(locale, 'home.why.title_2' as any)}</span></h2>
+          <p class="text-slate-600 mb-6">{t(locale, 'home.why.subtitle' as any)}</p>
+          <div class="grid grid-cols-3 gap-3 mb-6">
+            <div class="text-center p-3 bg-white rounded-xl border border-slate-200 shadow-sm">
+              <div class="font-display text-3xl text-brand-600">15+</div>
+              <div class="text-[11px] text-slate-500 mt-1">{t(locale, 'home.why.years' as any)}</div>
+            </div>
+            <div class="text-center p-3 bg-white rounded-xl border border-slate-200 shadow-sm">
+              <div class="font-display text-3xl text-brand-600">120+</div>
+              <div class="text-[11px] text-slate-500 mt-1">{t(locale, 'home.why.projects' as any)}</div>
+            </div>
+            <div class="text-center p-3 bg-white rounded-xl border border-slate-200 shadow-sm">
+              <div class="font-display text-3xl text-brand-600">24/7</div>
+              <div class="text-[11px] text-slate-500 mt-1">{t(locale, 'home.why.monitoring' as any)}</div>
+            </div>
+          </div>
+          <a href={localizedUrl(locale, '/contact/')} class="btn-primary text-sm">{t(locale, 'home.why.cta' as any)}</a>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/20 ring-1 ring-slate-200">
+            <img src="/images/section-dashboard.webp" alt="Dashboard" class="w-full h-auto" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy pillars -->
+  <section class="section-pad relative bg-slate-900 text-white overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/section-data.webp" alt="" class="w-full h-full object-cover opacity-10" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 relative">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <p class="chip chip-dark mb-3">{t(locale, 'home.philo.label' as any)}</p>
+        <h2 class="font-display text-3xl lg:text-4xl mb-3">{t(locale, 'home.philo.title' as any)}</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        {philos.map(p => (
+          <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+            <div class={`inline-block font-display text-4xl bg-gradient-to-br ${p.color} bg-clip-text text-transparent mb-3`}>{p.num}</div>
+            <h3 class="font-semibold text-white text-lg mb-2">{p.title}</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section-pad bg-white">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <p class="chip mb-3">{t(locale, 'home.testi.label' as any)}</p>
+        <h2 class="font-display text-4xl text-slate-900 mb-3">{t(locale, 'home.testi.title' as any)}</h2>
+        <div class="flex items-center justify-center gap-2 text-amber-400 text-lg">★★★★★ <span class="text-slate-900 font-bold ml-2">5,0</span> <span class="text-slate-500">Google</span></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        {testimonials.map(testi => (
+          <div class="card p-6">
+            <div class="flex gap-1 text-amber-400 text-base mb-4">★★★★★</div>
+            <p class="text-slate-700 text-sm leading-relaxed mb-5 italic">"{testi.text}"</p>
+            <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+              <div class="w-9 h-9 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">{testi.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div>
+              <div>
+                <div class="font-semibold text-slate-900 text-sm">{testi.name}</div>
+                <div class="text-xs text-slate-500">{testi.role}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section-pad bg-slate-50">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5">
+          <p class="chip mb-3">{t(locale, 'home.contact.label' as any)}</p>
+          <h2 class="font-display text-3xl lg:text-4xl text-slate-900 mb-4 leading-tight">{t(locale, 'home.contact.title_1' as any)}<br/><span class="text-brand-600">{t(locale, 'home.contact.title_2' as any)}</span></h2>
+          <p class="text-slate-600 mb-6">{t(locale, 'home.contact.subtitle' as any)}</p>
+          <div class="relative rounded-2xl overflow-hidden mb-6 hidden lg:block">
+            <img src="/images/section-human-ai.webp" alt="" class="w-full h-auto" loading="lazy" />
+          </div>
+          <div class="space-y-3">
+            <a href={`mailto:${SITE.email}`} class="flex items-center gap-3 text-slate-700 hover:text-brand-600 transition-colors text-sm">
+              <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+              {SITE.email}
+            </a>
+            <a href={SITE.phoneHref} class="flex items-center gap-3 text-slate-700 hover:text-brand-600 transition-colors text-sm">
+              <div class="w-9 h-9 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+              {SITE.phone}
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-7">
+          <LeadForm variant="full" title={t(locale, 'home.contact.form_title' as any)} subtitle={t(locale, 'home.contact.form_subtitle' as any)} cta={t(locale, 'cta.send_request' as any)} />
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<Footer />

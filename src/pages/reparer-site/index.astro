@@ -1,0 +1,64 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LeadForm from "../../components/LeadForm.astro";
+---
+<Base title="Réparer un Site Piraté — Intervention Urgence WordPress 24h | WP Solution" description="Site WordPress hacké ? Nous nettoyons, sécurisons et remettons en ligne en moins de 24h. Intervention d'urgence 7j/7." path="/reparer-site/">
+  <Header />
+  <main>
+    <section class="relative bg-slate-950 text-white flex items-center min-h-[70vh]">
+      <div class="absolute inset-0">
+        <img src="/images/service-security.png" alt="" class="w-full h-full object-cover opacity-30" />
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/50"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 relative">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-8">
+            <div class="chip chip-dark border-red-500/30 text-red-300 mb-4">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+              Intervention d'urgence
+            </div>
+            <h1 class="font-display text-4xl lg:text-6xl tracking-tight leading-[0.96] mb-5">Site hacké ?<br/><span class="text-red-400">On le répare.</span></h1>
+            <p class="text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">Désinfection complète, nettoyage des malwares, restauration des backups, sécurisation renforcée. Intervention en moins de 24h.</p>
+            <div class="flex flex-wrap gap-3">
+              <a href="/contact/" class="btn-coral text-base">Demander une intervention →</a>
+            </div>
+          </div>
+          <div class="lg:col-span-4">
+            <LeadForm variant="compact" title="Site hacké ?" subtitle="Décrivez le problème. On rappelle sous 2h." />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-pad bg-white">
+      <div class="max-w-4xl mx-auto px-5 lg:px-8">
+        <h2 class="font-display text-3xl text-slate-900 mb-8">Notre méthode de désinfection</h2>
+        <div class="space-y-4">
+          {[
+            { step: "01", title: "Diagnostic d'urgence", desc: "Scan complet du serveur, base de données et fichiers. Identification de toutes les portes dérobées." },
+            { step: "02", title: "Nettoyage profond", desc: "Suppression de tous les malwares, backdoors, scripts malveillants et fichiers infectés." },
+            { step: "03", title: "Restauration", desc: "Restauration depuis un backup sain ou reconstruction des fichiers légitimes." },
+            { step: "04", title: "Sécurisation renforcée", desc: "Firewall applicatif, 2FA, hardening complet, monitoring 24/7." },
+          ].map(p => (
+            <div class="flex gap-4 items-start card p-5">
+              <div class="font-display text-3xl text-brand-600 w-12 shrink-0">{p.step}</div>
+              <div>
+                <h3 class="font-semibold text-slate-900 text-lg mb-1">{p.title}</h3>
+                <p class="text-slate-600">{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    <section class="section-pad bg-slate-900 text-white text-center">
+      <div class="max-w-2xl mx-auto px-5">
+        <h2 class="font-display text-3xl mb-4">Ne laissez pas votre site hors ligne</h2>
+        <p class="text-slate-300 mb-6">Chaque heure compte. Contactez-nous maintenant.</p>
+        <a href="/contact/" class="btn-coral text-base">Intervention d'urgence</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

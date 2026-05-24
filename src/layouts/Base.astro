@@ -1,0 +1,86 @@
+---
+import "../styles/global.css";
+import { SITE } from "../data/site";
+import { LOCALES, DEFAULT_LOCALE, LOCALE_HREFLANG, localizedUrl, stripLocale, getLocaleFromPath, t, type Locale } from "../i18n/translations";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  path?: string;        // raw path WITHOUT locale prefix, e.g. "/contact/"
+  locale?: Locale;      // override locale (otherwise inferred from Astro.url)
+}
+
+const { title, description, path: rawPath, locale: localeProp } = Astro.props;
+
+// Infer locale from URL if not provided
+const currentPathname = Astro.url.pathname;
+const locale: Locale = localeProp || getLocaleFromPath(currentPathname);
+
+// path is the canonical "pageless-locale" path (e.g. "/contact/")
+const path = rawPath !== undefined ? rawPath : stripLocale(currentPathname);
+
+// Build canonical URL with locale prefix
+const canonicalPath = localizedUrl(locale, path);
+const canonical = `${SITE.url}${canonicalPath}`;
+
+// hreflang alternates — one per locale + x-default
+const alternates = LOCALES.map(l => ({
+  hreflang: LOCALE_HREFLANG[l],
+  href: `${SITE.url}${localizedUrl(l, path)}`,
+}));
+
+// SEO title / description
+const fullTitle = title || (locale === 'fr' ? `${SITE.name} · ${SITE.tagline}` : t(locale, 'meta.home.title'));
+const desc = description || (locale === 'fr' ? SITE.description : t(locale, 'meta.home.desc'));
+
+// HTML lang
+const htmlLang = locale === 'fr' ? 'fr-FR' : locale === 'en' ? 'en-US' : 'es-ES';
+---
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#026abf" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+
+    {/* hreflang for all language alternates */}
+    {alternates.map(alt => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${SITE.url}${localizedUrl(DEFAULT_LOCALE, path)}`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={htmlLang.replace('-', '_')} />
+    {LOCALES.filter(l => l !== locale).map(l => (
+      <meta property="og:locale:alternate" content={(l === 'fr' ? 'fr_FR' : l === 'en' ? 'en_US' : 'es_ES')} />
+    ))}
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": SITE.name,
+      "url": SITE.url,
+      "logo": `${SITE.url}/logo.svg`,
+      "description": desc,
+      "email": SITE.email,
+      "telephone": SITE.phone,
+      "sameAs": [SITE.social.linkedin].filter(Boolean),
+    })} />
+  </head>
+  <body class="bg-white text-slate-900 antialiased" data-locale={locale}>
+    <slot />
+  </body>
+</html>

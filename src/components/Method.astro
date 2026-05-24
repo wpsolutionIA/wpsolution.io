@@ -1,0 +1,36 @@
+---
+import { METHOD } from "../data/content";
+---
+<section id="methode" class="section-pad relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 mb-16">
+      <div class="lg:col-span-5">
+        <p class="chip mb-5">Notre méthode</p>
+        <h2 class="font-display text-5xl lg:text-6xl tracking-tight leading-[1.05] text-slate-900">
+          De l'audit<br/>
+          au <span class="italic text-brand-600">run quotidien</span>.
+        </h2>
+      </div>
+      <div class="lg:col-span-7 lg:pt-14">
+        <p class="text-xl text-slate-600 leading-relaxed">
+          Quatre étapes, un livrable concret à chaque étape. Pas de gantt à six mois, pas de bullshit livrable. <strong class="text-slate-900">On code tôt, on déploie souvent, on mesure tout.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      {METHOD.map((m, i) => (
+        <article class="card p-7 lg:p-8 relative group hover:border-brand-300 hover:shadow-lg hover:shadow-brand-100/50 transition-all min-h-[280px] flex flex-col">
+          <div class="flex items-start justify-between mb-6">
+            <span class="font-display text-7xl text-slate-200 group-hover:text-brand-200 transition-colors">{m.step}</span>
+            {i < METHOD.length - 1 && (
+              <svg class="w-7 h-7 text-slate-300 group-hover:text-brand-500 transition-colors hidden lg:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            )}
+          </div>
+          <h3 class="font-display text-2xl mb-3 text-slate-900">{m.title}</h3>
+          <p class="text-slate-600 leading-relaxed text-sm flex-1">{m.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

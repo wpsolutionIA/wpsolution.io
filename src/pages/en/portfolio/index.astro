@@ -1,0 +1,50 @@
+---
+import Base from "../../../layouts/Base.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import LeadForm from "../../../components/LeadForm.astro";
+
+const projects = [
+  { name: "Obagem", url: "https://obagem.fr", desc: "Custom WordPress + Elementor Pro" },
+  { name: "HTC Santé", url: "https://htc-sante.com", desc: "Multi-pole institutional site" },
+  { name: "Forum des Compétences", url: "https://forum-des-competences.org", desc: "WordPress + custom plugin" },
+  { name: "Vegeplast", url: "https://vegeplast.com", desc: "Industrial showcase site" },
+  { name: "Bien Dans Ma Peau", url: "https://bien-dans-ma-peau.fr", desc: "Wellness Elementor Pro" },
+  { name: "Point Soleil", url: "https://pointsoleil.com", desc: "Multi-franchise + booking" },
+  { name: "Winrider", url: "https://winrider.ae", desc: "WooCommerce + AI" },
+  { name: "Eptagon", url: "https://eptagon.fr", desc: "Architecture + portfolio" },
+];
+---
+<Base title="Portfolio — WordPress, E-commerce & AI Projects | WP Solution" description="Portfolio of WP Solution: WordPress sites, e-commerce, AI integrations. Over 120 projects delivered." path="/portfolio/" locale="en">
+  <Header />
+  <main>
+    <section class="relative bg-slate-950 text-white min-h-[50vh] flex items-center overflow-hidden">
+      <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 30% 50%, rgba(2,106,191,0.3) 0%, transparent 50%);"></div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 relative">
+        <h1 class="font-display text-5xl lg:text-7xl mb-4">Portfolio</h1>
+        <p class="text-xl text-slate-300 max-w-2xl">120+ projects delivered. WordPress sites, e-commerce, AI integrations.</p>
+      </div>
+    </section>
+    <section class="section-pad bg-white">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {projects.map(p => (
+            <a href={p.url} target="_blank" rel="noopener" class="card p-6 group hover:border-brand-400 transition-all">
+              <h3 class="font-semibold text-slate-900 mb-1 group-hover:text-brand-600 transition-colors">{p.name}</h3>
+              <p class="text-sm text-slate-500 mb-3">{p.desc}</p>
+              <span class="text-xs font-mono text-brand-600 uppercase tracking-wider">Visit →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+    <section class="section-pad bg-slate-50">
+      <div class="max-w-3xl mx-auto px-5 lg:px-8 text-center">
+        <h2 class="font-display text-3xl text-slate-900 mb-4">Your project, our next case study?</h2>
+        <p class="text-slate-600 mb-6">Tell us about your project. We respond within 24h.</p>
+        <LeadForm variant="full" title="Discuss my project" cta="Send" />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

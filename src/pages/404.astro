@@ -1,0 +1,20 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+<Base title="Page introuvable" path="/404">
+  <Header />
+  <main class="section-pad min-h-[60vh] flex items-center">
+    <div class="max-w-3xl mx-auto px-5 lg:px-10 text-center">
+      <p class="font-mono text-xs text-lime-400 uppercase tracking-[0.3em] mb-6">Erreur 404</p>
+      <h1 class="font-display text-[clamp(4rem,12vw,10rem)] leading-none">404</h1>
+      <p class="text-xl text-ink-300 mt-6 mb-10">Cette page n'existe pas — ou plus.</p>
+      <a href="/" class="btn-primary">
+        Retour à l'accueil
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Base>

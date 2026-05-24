@@ -1,0 +1,55 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LeadForm from "../../components/LeadForm.astro";
+---
+<Base title="À Propos — WP Solution, Agence IA & Web depuis 15 ans | France" description="WP Solution : une agence IA et web fondée il y a 15 ans. Notre histoire, nos valeurs, notre équipe." path="/notre-holding/">
+  <Header />
+  <main>
+    <section class="relative bg-slate-950 text-white flex items-center min-h-[60vh]">
+      <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 50% 50%, rgba(2,106,191,0.3) 0%, transparent 50%);"></div>
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 py-20 relative">
+        <h1 class="font-display text-5xl lg:text-7xl mb-4">WP Solution</h1>
+        <p class="text-xl text-slate-300 max-w-2xl">15 ans d'expertise web, une vision IA d'avant-garde. Nous sommes une agence française indépendante, spécialisée en intelligence artificielle, développement WordPress et référencement.</p>
+      </div>
+    </section>
+    <section class="section-pad bg-white">
+      <div class="max-w-4xl mx-auto px-5 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-10 items-center mb-16">
+          <div>
+            <h2 class="font-display text-3xl text-slate-900 mb-4">Notre histoire</h2>
+            <p class="text-slate-600 leading-relaxed mb-4">Fondée il y a 15 ans, WP Solution a d'abord été une agence WordPress pure-player. Nous avons sécurisé, maintenu et développé des centaines de sites pour des clients exigeants.</p>
+            <p class="text-slate-600 leading-relaxed mb-4">En 2024, nous avons opéré un virage stratégique majeur : intégrer l'intelligence artificielle au cœur de notre offre. Aujourd'hui, nous concevons des agents IA opérationnels tout en gardant notre exigence technique historique.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="card p-4 text-center">
+              <div class="font-display text-3xl text-brand-600">120+</div>
+              <div class="text-xs text-slate-500 mt-1">projets livrés</div>
+            </div>
+            <div class="card p-4 text-center">
+              <div class="font-display text-3xl text-brand-600">15+</div>
+              <div class="text-xs text-slate-500 mt-1">années</div>
+            </div>
+            <div class="card p-4 text-center">
+              <div class="font-display text-3xl text-brand-600">98%</div>
+              <div class="text-xs text-slate-500 mt-1">satisfaction</div>
+            </div>
+            <div class="card p-4 text-center">
+              <div class="font-display text-3xl text-brand-600">24/7</div>
+              <div class="text-xs text-slate-500 mt-1">monitoring</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-pad bg-slate-900 text-white">
+      <div class="max-w-2xl mx-auto px-5 text-center">
+        <h2 class="font-display text-3xl mb-4">Travaillons ensemble</h2>
+        <p class="text-slate-300 mb-6">Que vous ayez besoin d'un site WordPress, d'un agent IA ou d'une stratégie SEO complète, nous sommes l'équipe qu'il vous faut.</p>
+        <a href="/contact/" class="btn-coral text-base">Nous contacter</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

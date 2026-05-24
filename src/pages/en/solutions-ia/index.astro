@@ -1,0 +1,7 @@
+---
+import ServicePageLayout from "../../../layouts/ServicePage.astro";
+import { getServiceForLocale } from "../../../data/services";
+
+const service = getServiceForLocale("solutions-ia", "en");
+---
+<ServicePageLayout service={service} locale="en" />

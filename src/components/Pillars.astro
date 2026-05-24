@@ -1,0 +1,36 @@
+---
+import { PILLARS } from "../data/content";
+---
+<section class="section-pad relative">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-14">
+      <div class="max-w-3xl">
+        <p class="chip mb-5">Pourquoi WP Solution</p>
+        <h2 class="font-display text-5xl lg:text-6xl tracking-tight leading-[1.05] text-slate-900">
+          15 ans d'expérience web.<br/>
+          <span class="italic text-brand-600">Une expertise IA d'avant-garde.</span>
+        </h2>
+      </div>
+      <p class="max-w-md text-slate-600 text-lg leading-relaxed">
+        L'IA est jeune. Nous ne le sommes pas. Notre rigueur vient de 15 ans de production web — déploiement, monitoring, sécurité, SEO. L'IA hérite de cette discipline.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {PILLARS.map((p, i) => (
+        <article class="card-feature p-8 lg:p-10 group hover:border-brand-300 hover:shadow-xl hover:shadow-brand-100/50 transition-all">
+          <div class="flex items-center gap-4 mb-5">
+            <span class={`w-12 h-12 rounded-xl flex items-center justify-center font-display text-2xl ${
+              i===0 ? 'bg-brand-100 text-brand-700' :
+              i===1 ? 'bg-coral-50 text-coral-600' :
+              'bg-emerald-50 text-emerald-600'
+            }`}>{p.kicker}</span>
+            <span class="font-mono text-xs text-slate-500 uppercase tracking-widest">/ 03</span>
+          </div>
+          <h3 class="font-display text-3xl mb-4 leading-tight text-slate-900">{p.title}</h3>
+          <p class="text-slate-600 leading-relaxed">{p.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

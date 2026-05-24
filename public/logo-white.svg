@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60" fill="none" aria-label="WP Solution">
+  <text x="0" y="46"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="48"
+        font-weight="800"
+        letter-spacing="-2.5"
+        fill="#ffffff">WP</text>
+  <text x="86" y="46"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="48"
+        font-weight="300"
+        letter-spacing="-1"
+        fill="#ffffff">Solution</text>
+  <rect x="0" y="52" width="42" height="4" rx="2" fill="#4d9bff"/>
+</svg>
