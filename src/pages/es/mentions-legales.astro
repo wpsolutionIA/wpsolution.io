@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import LeadForm from "../../components/LeadForm.astro";
 ---
 <Base title="Aviso Legal | WP Solution — Agencia IA & Web Francia" description="Aviso legal del sitio WP Solution: editor, alojamiento, propiedad intelectual, protección de datos personales (RGPD)." path="/mentions-legales/" locale="es">
   <Header />
@@ -30,5 +31,10 @@ import Footer from "../../components/Footer.astro";
       </section>
     </div>
   </main>
+  <section class="section-pad bg-slate-50">
+    <div class="max-w-3xl mx-auto px-5 lg:px-8">
+      <LeadForm variant="inline" title="¿Una pregunta legal?" subtitle="Respondemos en 24h." service="Aviso legal" />
+    </div>
+  </section>
   <Footer />
 </Base>

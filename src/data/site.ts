@@ -5,7 +5,7 @@ export const SITE = {
   domain: "wpsolution.io",
   email: "contact@wpsolution.io",
   phone: "+33 7 56 81 94 38",
-  phoneHref: "tel:+337****9438",
+  phoneHref: "tel:+33756819438",
   whatsapp: "33756819438",
   whatsappUrl: "https://wa.me/33756819438",
   address: "WPSOLUTION LLC · 16192 Coastal Highway · Lewes, DE 19958 · USA",

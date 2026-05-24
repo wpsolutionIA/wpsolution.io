@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import LeadForm from "../../components/LeadForm.astro";
 ---
 <Base title="Blog — Actualités IA, WordPress & SEO | WP Solution" description="Actualités, conseils et tutoriels sur l'IA, WordPress et le SEO par WP Solution." path="/blog/">
   <Header />
@@ -22,5 +23,10 @@ import Footer from "../../components/Footer.astro";
       </div>
     </section>
   </main>
+  <section class="section-pad bg-slate-50">
+    <div class="max-w-3xl mx-auto px-5 lg:px-8 text-center">
+      <LeadForm variant="inline" title="Vous voulez écrire pour nous ?" subtitle="Proposez un article guest. On vous répond sous 24h." service="Blog" />
+    </div>
+  </section>
   <Footer />
 </Base>

@@ -124,8 +124,8 @@ export const SERVICE_PAGES_EN: ServicePage[] = [
   {
     slug: "maintenance-wordpress",
     title: "WordPress Pro Maintenance & Technical Support | WP Solution",
-    headline: "Your WordPress site always operational",
-    description: "Preventive and curative WordPress maintenance: updates, backups, optimization, technical support. Gain peace of mind.",
+    headline: "Security, updates, anti-bug support & backups included",
+    description: "Complete WordPress maintenance: enhanced security, core/theme/plugin updates, unlimited anti-bug support, daily backups on us. Starting at \u20ac50/month.",
     icon: "🔧",
     heroImage: "/images/service-maintenance.png",
     features: [
@@ -155,9 +155,9 @@ export const SERVICE_PAGES_EN: ServicePage[] = [
       { q: "Do you provide hosting?", a: "We work with partner hosts (OVH, Infomaniak, Cloudways) or manage your existing VPS." },
     ],
     pricing: [
-      { plan: "Essential", price: "€99/month", desc: "Basic maintenance", features: ["Monthly updates", "Weekly backups", "Uptime monitoring", "Email support", "Quarterly report"] },
-      { plan: "Pro", price: "€199/month", desc: "Complete maintenance", features: ["Weekly updates", "Daily backups", "Performance optimization", "Phone support", "Monthly report"] },
-      { plan: "Enterprise", price: "€399/month", desc: "Enhanced surveillance", features: ["On-demand updates", "Real-time backups", "CDN included", "24/7 support", "Dedicated technician"] },
+      { plan: "Without hosting", price: "€50/month", desc: "WordPress maintenance only", features: ["WordPress, theme & plugin updates", "Site security & firewall", "Unlimited anti-bug support", "Daily automatic backups", "Database optimization", "24/7 uptime monitoring", "Monthly report"] },
+      { plan: "With hosting", price: "€70/month", desc: "Maintenance + Hosting included", features: ["All Without hosting features", "High-performance SSD hosting", "Free domain for 1st year", "Let's Encrypt SSL certificate", "Professional emails included", "Free Cloudflare CDN"] },
+      { plan: "Large sites", price: "€129/month", desc: "Complex sites & e-commerce", features: ["All With hosting features", "Monthly security audit", "Core Web Vitals optimization", "Priority support < 2h", "Corrective development included", "Weekend & holiday intervention"] },
     ],
   },
   {

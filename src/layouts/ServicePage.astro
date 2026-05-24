@@ -161,7 +161,7 @@ const useCaseKeys = ['startup', 'sme', 'ecom', 'large'] as const;
           <h2 class="font-display text-3xl lg:text-4xl text-slate-900 mb-3">{t(locale, 'svc.pricing.title' as any)}</h2>
           <p class="text-slate-600">{t(locale, 'svc.pricing.subtitle' as any)}</p>
         </div>
-        <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        <div class={`grid gap-5 max-w-3xl mx-auto ${pricing.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
           {pricing.map((plan, i) => (
             <div class={`card p-6 ${i === 1 ? 'ring-2 ring-brand-400 relative' : ''}`}>
               {i === 1 && <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">{t(locale, 'svc.pricing.popular' as any)}</div>}
@@ -251,6 +251,29 @@ const useCaseKeys = ['startup', 'sme', 'ecom', 'large'] as const;
               <div class="text-sm text-slate-500">{locale === 'fr' ? 'Gérant — Obagem' : locale === 'en' ? 'Director — Obagem' : 'Director — Obagem'}</div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related services (internal linking SEO) -->
+    <section class="section-pad bg-white border-t border-slate-100">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center mb-8">
+          <p class="chip mb-3">{locale === 'fr' ? 'Services liés' : locale === 'en' ? 'Related services' : 'Servicios relacionados'}</p>
+          <h2 class="font-display text-3xl text-slate-900">{locale === 'fr' ? 'Ces services pourraient vous intéresser' : locale === 'en' ? 'You might also be interested in' : 'También podría interesarle'}</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          {[
+            { slug: 'solutions-ia', label: locale === 'fr' ? 'Solutions IA' : locale === 'en' ? 'AI Solutions' : 'Soluciones IA', desc: locale === 'fr' ? 'Agents IA, chatbots, automatisations' : locale === 'en' ? 'AI agents, chatbots, automations' : 'Agentes IA, chatbots, automatizaciones' },
+            { slug: 'creation-site-wordpress', label: locale === 'fr' ? 'Création site WordPress' : locale === 'en' ? 'WordPress creation' : 'Creación web WordPress', desc: locale === 'fr' ? 'Design sur mesure, performance, SEO' : locale === 'en' ? 'Custom design, performance, SEO' : 'Diseño a medida, rendimiento, SEO' },
+            { slug: 'referencer-site', label: locale === 'fr' ? 'Référencement SEO' : locale === 'en' ? 'SEO services' : 'Servicios SEO', desc: locale === 'fr' ? 'Visibilité Google, trafic qualifié' : locale === 'en' ? 'Google visibility, qualified traffic' : 'Visibilidad Google, tráfico cualificado' },
+          ].filter(s => s.slug !== service.slug).slice(0, 3).map(s => (
+            <a href={localizedUrl(locale, `/${s.slug}/`)} class="card p-5 group hover:border-brand-400 transition-all text-center">
+              <h3 class="font-semibold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">{s.label}</h3>
+              <p class="text-sm text-slate-500 mb-3">{s.desc}</p>
+              <span class="text-xs font-semibold text-brand-600">{locale === 'fr' ? 'En savoir plus →' : locale === 'en' ? 'Learn more →' : 'Saber más →'}</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>

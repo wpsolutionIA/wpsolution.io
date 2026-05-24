@@ -133,8 +133,8 @@ export const SERVICE_PAGES: ServicePage[] = [
   {
     slug: "maintenance-wordpress",
     title: "Maintenance WordPress Pro & Support Technique | WP Solution",
-    headline: "Votre site WordPress toujours op\u00e9rationnel",
-    description: "Maintenance pr\u00e9ventive et curative de sites WordPress : mises \u00e0 jour, sauvegardes, optimisation, support technique. Gagnez en s\u00e9r\u00e9nit\u00e9.",
+    headline: "S\u00e9curit\u00e9, mises \u00e0 jour, support anti-bug et sauvegardes inclus",
+    description: "Maintenance WordPress compl\u00e8te : s\u00e9curit\u00e9 renforc\u00e9e, mises \u00e0 jour core/th\u00e8mes/plugins, support anti-bug illimit\u00e9, sauvegardes quotidiennes \u00e0 notre charge. \u00c0 partir de 50\u20ac/mois.",
     icon: "\ud83d\udd27",
     heroImage: "/images/service-maintenance.png",
     features: [
@@ -164,9 +164,9 @@ export const SERVICE_PAGES: ServicePage[] = [
       { q: "Proposez-vous l'h\u00e9bergement ?", a: "Nous travaillons avec des h\u00e9bergeurs partenaires (OVH, Infomaniak, Cloudways) ou g\u00e9rons votre VPS existant." },
     ],
     pricing: [
-      { plan: "Essentiel", price: "99\u20ac/mois", desc: "Maintenance de base", features: ["M\u00e0J mensuelles", "Backups hebdo", "Monitoring uptime", "Support email", "Rapport trimestriel"] },
-      { plan: "Pro", price: "199\u20ac/mois", desc: "Maintenance compl\u00e8te", features: ["M\u00e0J hebdo", "Backups quotidiens", "Optimisation perf", "Support t\u00e9l\u00e9phone", "Rapport mensuel"] },
-      { plan: "Entreprise", price: "399\u20ac/mois", desc: "Surveillance renforc\u00e9e", features: ["M\u00e0J \u00e0 la demande", "Backups temps r\u00e9el", "CDN inclus", "Support 24/7", "D\u00e9di\u00e9 technique"] },
+      { plan: "Sans hébergement", price: "50\u20ac/mois", desc: "Maintenance WordPress seule", features: ["Mises \u00e0 jour WordPress, thèmes, plugins", "S\u00e9curit\u00e9 du site & firewall", "Support anti-bug illimit\u00e9", "Sauvegardes automatiques quotidiennes", "Optimisation base de donn\u00e9es", "Monitoring uptime 24/7", "Rapport mensuel"] },
+      { plan: "Avec hébergement", price: "70\u20ac/mois", desc: "Maintenance + H\u00e9bergement inclus", features: ["Tout le plan Sans hébergement", "H\u00e9bergement SSD haute performance", "Nom de domaine offert la 1\u00e8re ann\u00e9e", "Certificat SSL Let's Encrypt", "Emails professionnels inclus", "CDN Cloudflare offert"] },
+      { plan: "Gros sites", price: "129\u20ac/mois", desc: "Sites complexes & e-commerce", features: ["Tout le plan Avec hébergement", "Audit de s\u00e9curit\u00e9 mensuel", "Optimisation Core Web Vitals", "Support prioritaire < 2h", "D\u00e9veloppement correctif inclus", "Intervention week-end & jours f\u00e9ri\u00e9s"] },
     ],
   },
   {

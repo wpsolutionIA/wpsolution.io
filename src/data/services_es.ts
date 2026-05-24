@@ -124,8 +124,8 @@ export const SERVICE_PAGES_ES: ServicePage[] = [
   {
     slug: "maintenance-wordpress",
     title: "Mantenimiento WordPress Pro & Soporte Técnico | WP Solution",
-    headline: "Su web WordPress siempre operativa",
-    description: "Mantenimiento preventivo y curativo de webs WordPress: actualizaciones, backups, optimización, soporte técnico. Gane tranquilidad.",
+    headline: "Seguridad, actualizaciones, soporte anti-bugs y backups incluidos",
+    description: "Mantenimiento WordPress completo: seguridad reforzada, actualizaciones core/temas/plugins, soporte anti-bugs ilimitado, backups diarios a nuestro cargo. Desde 50 \u20ac/mes.",
     icon: "🔧",
     heroImage: "/images/service-maintenance.png",
     features: [
@@ -155,9 +155,9 @@ export const SERVICE_PAGES_ES: ServicePage[] = [
       { q: "¿Ofrecen hosting?", a: "Trabajamos con hostings partners (OVH, Infomaniak, Cloudways) o gestionamos su VPS existente." },
     ],
     pricing: [
-      { plan: "Esencial", price: "99 €/mes", desc: "Mantenimiento básico", features: ["Actualizaciones mensuales", "Backups semanales", "Monitoring uptime", "Soporte email", "Informe trimestral"] },
-      { plan: "Pro", price: "199 €/mes", desc: "Mantenimiento completo", features: ["Actualizaciones semanales", "Backups diarios", "Optimización rendimiento", "Soporte teléfono", "Informe mensual"] },
-      { plan: "Empresa", price: "399 €/mes", desc: "Vigilancia reforzada", features: ["Actualizaciones bajo demanda", "Backups tiempo real", "CDN incluido", "Soporte 24/7", "Técnico dedicado"] },
+      { plan: "Sin hosting", price: "50 €/mes", desc: "Solo mantenimiento WordPress", features: ["Actualizaciones WordPress, temas, plugins", "Seguridad del sitio & firewall", "Soporte anti-bugs ilimitado", "Backups automáticos diarios", "Optimización base de datos", "Monitoreo uptime 24/7", "Informe mensual"] },
+      { plan: "Con hosting", price: "70 €/mes", desc: "Mantenimiento + Hosting incluido", features: ["Todo el plan Sin hosting", "Hosting SSD alto rendimiento", "Dominio gratis 1er año", "Certificado SSL Let's Encrypt", "Emails profesionales incluidos", "CDN Cloudflare gratis"] },
+      { plan: "Grandes sitios", price: "129 €/mes", desc: "Sitios complejos & e-commerce", features: ["Todo el plan Con hosting", "Auditoría de seguridad mensual", "Optimización Core Web Vitals", "Soporte prioritario < 2h", "Desarrollo correctivo incluido", "Intervención fines de semana & festivos"] },
     ],
   },
   {

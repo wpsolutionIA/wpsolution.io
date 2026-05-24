@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import LeadForm from "../../components/LeadForm.astro";
 ---
 <Base title="Privacidad & Protección de Datos | WP Solution" description="Política de privacidad de WP Solution: datos recogidos, finalidad del tratamiento, conservación, derechos RGPD, cookies." path="/politique-confidentialite/" locale="es">
   <Header />
@@ -34,5 +35,10 @@ import Footer from "../../components/Footer.astro";
       </section>
     </div>
   </main>
+  <section class="section-pad bg-slate-50">
+    <div class="max-w-3xl mx-auto px-5 lg:px-8">
+      <LeadForm variant="inline" title="¿Una pregunta sobre sus datos?" subtitle="Respondemos en 24h." service="Privacidad" />
+    </div>
+  </section>
   <Footer />
 </Base>
