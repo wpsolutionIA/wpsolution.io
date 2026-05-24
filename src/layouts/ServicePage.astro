@@ -29,7 +29,7 @@ const useCaseKeys = ['startup', 'sme', 'ecom', 'large'] as const;
       </div>
       <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 relative w-full">
         <div class="grid lg:grid-cols-12 gap-10 items-center">
-          <div class="lg:col-span-8">
+          <div class="lg:col-span-7">
             <div class="flex items-center gap-3 mb-5">
               <span class="text-4xl">{icon}</span>
               <span class="chip chip-dark backdrop-blur-sm border-white/10">
@@ -52,6 +52,9 @@ const useCaseKeys = ['startup', 'sme', 'ecom', 'large'] as const;
                 {t(locale, 'svc.cta.discover' as any)}
               </a>
             </div>
+          </div>
+          <div class="lg:col-span-5">
+            <LeadForm variant="compact" title={t(locale, 'cta.quote_24h' as any)} subtitle={t(locale, 'home.hero.form_subtitle' as any)} cta={t(locale, 'cta.get_quote' as any)} service={title} />
           </div>
         </div>
       </div>
